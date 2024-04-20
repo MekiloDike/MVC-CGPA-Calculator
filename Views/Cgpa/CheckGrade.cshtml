@@ -1,0 +1,111 @@
+﻿@{
+    ViewData["Title"] = "Calculator Page";
+}
+@model List<MVC_CGPA.ViewModel.CgpaDetailsVM>
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check Grade</title>
+</head>
+<body>
+    <h4>Enter CGPA Details</h4>
+
+    <form id="cgpaForm" method="post" action="@Url.Action("CheckGrade", "Cgpa")">
+        <div id="cgpaContainer">
+            @for (var i = 0; i < Model.Count; i++)
+            {
+                <div class="cgpa-entry">
+                    <label>Course Name</label>
+                    <input type="text" name="[@i].CourseName" value="@Model[i].CourseName" />
+                    
+                    <label>Course Grade</label>
+                    <select name="[@i].CourseGrade">
+                            <option value="">select grade</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                    </select>
+
+                    <label>Grade Point</label>
+                    <input type="text" name="[@i].GradePOint" value="@Model[i].GradePoint" />
+
+
+                    <label>Course Unit</label>
+                    <select name="[@i].CourseUnit">
+                        <option value="">select Unit</option>                        
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+            }
+        </div>
+
+        <input type="button" value="Add More" onclick="addCgpaField()" />
+        <input type="submit" value="Calculate CGPA" />
+    </form>
+
+    <script>
+        function addCgpaField() {
+            var cgpaContainer = document.getElementById('cgpaContainer');
+            var newCgpaEntry = document.createElement('div');
+            newCgpaEntry.classList.add('cgpa-entry');
+            newCgpaEntry.innerHTML = `
+                        <div class="cgpa-entry">
+                            <label>Course Name</label>
+                            <input name="[@Model.Count].CourseName" />
+                            <label>Course Grade</label>
+                            <select name="[@Model.Count].CourseGrade">
+                            <option value="">select grade</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            </select
+
+
+                            <label>Grade Point</label>
+                            <input name="[@Model.Count].GradePoint" />
+
+
+
+                                    <label>Course Unit</label>
+                                     <select name="[@Model.Count].CourseUnit">
+                                    <option value="">select Unit</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    </select
+                              
+                        </div>
+                    `;
+            cgpaContainer.appendChild(newCgpaEntry);
+        }
+        
+
+    </script>
+</body>
+</html>
+

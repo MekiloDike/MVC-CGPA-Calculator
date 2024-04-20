@@ -1,0 +1,2 @@
+foreach (var vic in self.)
+System.Console.WriteLine(vic);
